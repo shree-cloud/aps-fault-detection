@@ -1,0 +1,38 @@
+[ 2022-12-13 15:29:14,448 ] 16 root - INFO - >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Data Ingestion <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+[ 2022-12-13 15:29:14,449 ] 23 root - INFO - Exporting collection data as pandas dataframe
+[ 2022-12-13 15:29:14,449 ] 10 root - INFO - Reading data from database: aps and collection: sensor
+[ 2022-12-13 15:29:19,587 ] 12 root - INFO - Found columns: Index(['_id', 'class', 'aa_000', 'ab_000', 'ac_000', 'ad_000', 'ae_000',
+       'af_000', 'ag_000', 'ag_001',
+       ...
+       'ee_002', 'ee_003', 'ee_004', 'ee_005', 'ee_006', 'ee_007', 'ee_008',
+       'ee_009', 'ef_000', 'eg_000'],
+      dtype='object', length=172)
+[ 2022-12-13 15:29:19,588 ] 14 root - INFO - Dropping column: _id
+[ 2022-12-13 15:29:19,804 ] 16 root - INFO - Row and Columns in df: (36188, 171)
+[ 2022-12-13 15:29:19,804 ] 29 root - INFO - Save data in feature store
+[ 2022-12-13 15:29:20,472 ] 36 root - INFO - Create feature store if not available
+[ 2022-12-13 15:29:20,473 ] 40 root - INFO - Save df to feature store folder
+[ 2022-12-13 15:29:22,969 ] 44 root - INFO - Split dataset into train and test set
+[ 2022-12-13 15:29:23,637 ] 48 root - INFO - create dataset directory folder if not available
+[ 2022-12-13 15:29:23,637 ] 53 root - INFO - Save df to feature store folder
+[ 2022-12-13 15:29:25,769 ] 64 root - INFO - Data Ingestion artifact: DataIngestionArtifact(feature_store_file_path='/config/workspace/artifact/12132022__152914/data_ingestion/feature_store/sensor.csv', train_file_path='/config/workspace/artifact/12132022__152914/data_ingestion/dataset/train.csv', test_file_path='/config/workspace/artifact/12132022__152914/data_ingestion/dataset/test.csv')
+[ 2022-12-13 15:29:26,286 ] 17 root - INFO - >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Data Ingestion <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+[ 2022-12-13 15:29:26,286 ] 104 root - INFO - Reading base dataframe
+[ 2022-12-13 15:29:29,172 ] 107 root - INFO - Replace na value in base df
+[ 2022-12-13 15:29:29,172 ] 109 root - INFO - Drop null value columns from base df
+[ 2022-12-13 15:29:30,056 ] 36 root - INFO - selecting column name which contains null values above0.7
+[ 2022-12-13 15:29:30,057 ] 40 root - INFO - Columns to drop:Index(['ab_000', 'bn_000', 'bo_000', 'bp_000', 'bq_000', 'br_000', 'cr_000'], dtype='object')
+[ 2022-12-13 15:29:30,172 ] 45 root - INFO - return none value if no columns left
+[ 2022-12-13 15:29:30,172 ] 112 root - INFO - Reading train dataframe
+[ 2022-12-13 15:29:30,556 ] 114 root - INFO - Reading test dataframe
+[ 2022-12-13 15:29:30,659 ] 117 root - INFO - Drop null value columns from train df
+[ 2022-12-13 15:29:30,670 ] 36 root - INFO - selecting column name which contains null values above0.7
+[ 2022-12-13 15:29:30,671 ] 40 root - INFO - Columns to drop:Index(['ab_000', 'bn_000', 'bo_000', 'bp_000', 'bq_000', 'br_000', 'cr_000'], dtype='object')
+[ 2022-12-13 15:29:30,681 ] 45 root - INFO - return none value if no columns left
+[ 2022-12-13 15:29:30,681 ] 119 root - INFO - Drop null value columns from test df
+[ 2022-12-13 15:29:30,685 ] 36 root - INFO - selecting column name which contains null values above0.7
+[ 2022-12-13 15:29:30,685 ] 40 root - INFO - Columns to drop:Index(['ab_000', 'bn_000', 'bo_000', 'bp_000', 'bq_000', 'br_000', 'cr_000'], dtype='object')
+[ 2022-12-13 15:29:30,689 ] 45 root - INFO - return none value if no columns left
+[ 2022-12-13 15:29:30,689 ] 122 root - INFO - Is all required columns present in train df
+[ 2022-12-13 15:29:30,690 ] 124 root - INFO - Is all required columns present in test df
+[ 2022-12-13 15:29:30,690 ] 128 root - INFO - As all columns are available in train df hence detecting data drift
