@@ -14,7 +14,7 @@ class DataValidation:
                     data_validation_config:config_entity.DataValidationConfig, 
                     data_ingestion_artifact:artifact_entity.DataIngestionArtifact):
         try:
-            logging.info(f"{'>>'*20} Data Ingestion {'<<'*20}")
+            logging.info(f"{'>>'*20} Data Validation {'<<'*20}")
             self.data_ingestion_artifact = data_ingestion_artifact
             self.data_validation_config = data_validation_config
             self.validation_error=dict()
@@ -81,6 +81,8 @@ class DataValidation:
             for base_column in base_columns:
                 base_data,current_data = base_df[base_column],current_df[base_column]
                 #null hypothesis = both column data drawn from same distribution
+
+                logging.info(f"Hypothesis {base_column}: {base_data.dtype}, {current_data.dtype}")
                 same_distribution = ks_2samp(base_data, current_data)
                 
                 if same_distribution.pvalue>0.05:
