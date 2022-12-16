@@ -5,6 +5,7 @@ __pycache__/
 artifact
 # C extensions
 *.so
+logs
 
 # Distribution / packaging
 .Python

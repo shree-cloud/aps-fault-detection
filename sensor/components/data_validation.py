@@ -7,12 +7,14 @@ import numpy as np
 import pandas as pd
 from scipy.stats import ks_2samp
 from sensor import utils
+from sensor.config import TARGET_COLUMN
 
 class DataValidation:
 
     def __init__(self,
-                    data_validation_config:config_entity.DataValidationConfig, 
-                    data_ingestion_artifact:artifact_entity.DataIngestionArtifact):
+                data_validation_config:config_entity.DataValidationConfig, 
+                data_ingestion_artifact:artifact_entity.DataIngestionArtifact
+                ):
         try:
             logging.info(f"{'>>'*20} Data Validation {'<<'*20}")
             self.data_ingestion_artifact = data_ingestion_artifact
@@ -122,7 +124,7 @@ class DataValidation:
             test_df=self.drop_missing_values_columns(df=test_df, report_key_name="missing_values_within_test_dataset")
 
 
-            exclude_columns=["class"]
+            exclude_columns=[TARGET_COLUMN]
             base_df = utils.conver_column_to_float(df=base_df, exclude_columns=exclude_columns)
             train_df = utils.conver_column_to_float(df=train_df, exclude_columns=exclude_columns)
             test_df = utils.conver_column_to_float(df=test_df, exclude_columns=exclude_columns)
