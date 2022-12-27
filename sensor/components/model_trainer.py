@@ -84,9 +84,3 @@ class ModelTrainer:
             return model_trainer_artifact
         except Exception as e:
             raise SensorException(e, sys)
-
-# model_trainer_config = config_entity.ModelTrainerConfig
-# data_transformation_artifact = artifact_entity.DataTransformationArtifact
-
-# mt = ModelTrainer(model_trainer_config,data_transformation_artifact)
-# mt.initiate_model_trainer()
