@@ -59,7 +59,7 @@ class ModelTrainer:
             yhat_test = model.predict(x_test)
             f1_test_score = f1_score(y_true=y_test, y_pred=yhat_test)
 
-            logging.info(f"train scor:{f1_train_score} and test score: {f1_test_score}")
+            logging.info(f"train score:{f1_train_score} and test score: {f1_test_score}")
             #check for overfitting and underfitting or expected score
             logging.info(f"Checking if the model is underfiting or not")
             if f1_test_score < self.model_trainer_config.excpected_score:
@@ -81,5 +81,12 @@ class ModelTrainer:
             model_trainer_artifact = artifact_entity.ModelTrainerArtifact(model_path=self.model_trainer_config.model_path,
             f1_train_score=f1_train_score, f1_test_score=f1_test_score)
             logging.info(f"Model Trainer Artifact: {model_trainer_artifact}")
+            return model_trainer_artifact
         except Exception as e:
             raise SensorException(e, sys)
+
+# model_trainer_config = config_entity.ModelTrainerConfig
+# data_transformation_artifact = artifact_entity.DataTransformationArtifact
+
+# mt = ModelTrainer(model_trainer_config,data_transformation_artifact)
+# mt.initiate_model_trainer()

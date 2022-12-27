@@ -26,13 +26,12 @@ class ModelEvaluation:
                 except Exception as e:
                     raise SensorException(e, sys)
 
-    def initiate_model_evaluation(self)->artifact_entity.ModelEvaluationArtifact:
+    def initiate_model_evaluation(self,)->artifact_entity.ModelEvaluationArtifact:
         try:
             # if saved model folder has model then we will compare 
             # which model is best, trained or the model form saved model folder
 
-            logging.info(f"if saved model folder has model then we will compare "
-            "which model is best, trained or the model form saved model folder")
+            logging.info(f"if saved model folder has model then we will compare which model is best, trained or the model form saved model folder")
             latest_dir_path = self.model_resolver.get_latest_dir_path()
             if latest_dir_path == None:
                 model_evaluation_artifact = artifact_entity.ModelEvaluationArtifact(is_model_accepted=True,
@@ -63,14 +62,16 @@ class ModelEvaluation:
             y_true = target_encoder.transform(target_df)
 
             # accuracy using previous trained model
-            input_arr = transformer.transform(test_df)
+            input_feature_name = list(transformer.feature_names_in_)
+            input_arr = transformer.transform(test_df[input_feature_name])
             y_pred = model.predict(input_arr)
             print(f"Prediction using previoud model: {target_encoder.inverse_transform(y_pred[:5])}")
             previous_model_score = f1_score(y_true=y_true, y_pred=y_pred)
 
             logging.info(f"accuracy using currently trained model{previous_model_score}")
             #accuracy using current trained model
-            input_arr = current_transformer.transform(test_df)
+            input_feature_name = list(current_transformer.feature_names_in_)
+            input_arr = current_transformer.transform(test_df[input_feature_name])
             y_pred = current_model.predict(input_arr)
             y_true = current_target_encoder.transform(target_df)
             print(f"Prediction using previoud model: {current_target_encoder.inverse_transform(y_pred[:5])}")
@@ -82,7 +83,7 @@ class ModelEvaluation:
                 raise Exception("current trained model is not better than previous model")
             
             model_evaluation_artifact = artifact_entity.ModelEvaluationArtifact(is_model_accepted=True,
-            improved_accuracy=current_model_score-previous_model_score)
+            improved_accuracy=current_model_score - previous_model_score)
 
             logging.info(f"Model Evaluation artifact: {improved_accuracy}")
             return model_evaluation_artifact

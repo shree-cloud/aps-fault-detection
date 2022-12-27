@@ -4,7 +4,8 @@ from sensor.entity.artifact_entity import DataTransformationArtifact, ModelTrain
 from sensor.exception import SensorException
 from sensor.logger import logging
 import os, sys
-from sensor.utils import save_object,load_object
+from sensor.utils import load_object,save_object
+# from sensor.utils import save_object,load_object
 
 
 class ModelPusher:
@@ -37,7 +38,7 @@ class ModelPusher:
 
             #saved model 
             logging.info("Saving modle in saved model directory")
-            transformer_path = self.model_resolver.get_latest_save_model_path()
+            transformer_path = self.model_resolver.get_latest_save_transformer_path()
             model_path = self.model_resolver.get_latest_save_model_path()
             target_encoder_path = self.model_resolver.get_latest_save_target_encoder_path()
 
