@@ -78,7 +78,7 @@ class ModelEvaluation:
             current_model_score = f1_score(y_true=y_true, y_pred=y_pred)
             logging.info(f"accuracy using previous trained model: {current_model_score}")
 
-            if current_model_score < previous_model_score:
+            if current_model_score <= previous_model_score:
                 logging.info(f"current trained model is not better than previous model")
                 raise Exception("current trained model is not better than previous model")
             
